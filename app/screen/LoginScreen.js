@@ -7,6 +7,7 @@ import Apptextinput from '../../components/AppTextInput';
 import Screen from './Screen';
 import Apptext from '../../components/AppText';
 import Errormessage from '../../components/ErrorMessage';
+import Appformfield from '../../components/AppFormField';
 
 const Loginscreen = () => {
 
@@ -30,30 +31,29 @@ const Loginscreen = () => {
                 onSubmit={values => console.log(values)}
                 validationSchema={validationShema}
             >
-                {({ handleChange, handleSubmit, errors }) => (
+                {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
                     <>
-                        <Apptextinput
+                        <Appformfield
                             autoCapitalize="none"
                             autoCorrect={false}
                             icon="email"
                             keyboardType="email-address"
                             placeholder="Email"
                             textContentType="emailAddress"
-                            onChangeText={handleChange("email")}
+                            name="email"
                         />
-                        <Errormessage error={errors.email} />
 
-                        <Apptextinput
+                        <Appformfield
                             autoCapitalize="none"
                             autoCorrect={false}
                             icon="lock"
+                            name="password"
                             secureTextEntry
                             placeholder="Password"
                             textContentType="password"
-                            onChangeText={handleChange("password")}
+
                         />
 
-                        <Errormessage error={errors.password} />
 
                         <AppButton
                             title="Login"
