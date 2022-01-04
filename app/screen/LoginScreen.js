@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Formik } from "formik";
 import * as Yup from "yup";
-import AppButton from '../../components/AppButton';
-import Apptextinput from '../../components/AppTextInput';
+import { AppFormField, Appform, ErrorMessage, SubmitButton } from '../../components/Form/index'
 import Screen from './Screen';
-import Apptext from '../../components/AppText';
-import Errormessage from '../../components/ErrorMessage';
-import Appformfield from '../../components/AppFormField';
 
 const Loginscreen = () => {
 
@@ -26,42 +21,37 @@ const Loginscreen = () => {
                 source={require("../assets/pic2.jpg")}
             />
 
-            <Formik
+            <Appform
                 initialValues={{ email: '', password: '' }}
                 onSubmit={values => console.log(values)}
                 validationSchema={validationShema}
             >
-                {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
-                    <>
-                        <Appformfield
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            icon="email"
-                            keyboardType="email-address"
-                            placeholder="Email"
-                            textContentType="emailAddress"
-                            name="email"
-                        />
+                <AppFormField
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon="email"
+                    keyboardType="email-address"
+                    placeholder="Email"
+                    textContentType="emailAddress"
+                    name="email"
+                />
 
-                        <Appformfield
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            icon="lock"
-                            name="password"
-                            secureTextEntry
-                            placeholder="Password"
-                            textContentType="password"
+                <AppFormField
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon="lock"
+                    name="password"
+                    secureTextEntry
+                    placeholder="Password"
+                    textContentType="password"
 
-                        />
+                />
 
 
-                        <AppButton
-                            title="Login"
-                            onPress={handleSubmit}
-                        />
-                    </>
-                )}
-            </Formik>
+                <SubmitButton
+                    title="Login"
+                />
+            </Appform>
 
 
         </Screen>

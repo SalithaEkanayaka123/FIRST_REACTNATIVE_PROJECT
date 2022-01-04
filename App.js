@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import Accountscreen from './app/screen/AccountScreen';
 import Cardscreen from './app/screen/CardScreen';
+import Listingeditscreen from './app/screen/ListingEditScreen';
 import Loginscreen from './app/screen/LoginScreen';
 import Messagescreen from './app/screen/MessageScreen';
 import Screen from './app/screen/Screen';
@@ -35,7 +36,8 @@ export default function App() {
     //   <Apptextinput icon="email" placeholder="Email" />
     // </Screen>
     // <Layout4 />
-    <Loginscreen />
+    // <Loginscreen />
+    <Listingeditscreen />
 
 
     // <Screen>

@@ -7,7 +7,9 @@ const Apptextinput = ({ icon, ...otherProps }) => {
     return (
         <View style={styles.constainer}>
             {icon && <MaterialCommunityIcons name={icon} size={30} color='#000' style={styles.icon} />}
-            <TextInput style={defultStyles.text1} {...otherProps} />
+            <TextInput
+                placeholderTextColor="#EA5C2B"
+                style={defultStyles.text1} {...otherProps} />
         </View>
     );
 }
