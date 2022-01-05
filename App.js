@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, Text, View, SafeAreaView, Image,
-  TouchableWithoutFeedback, Platform, StatusBar
+  TouchableWithoutFeedback, Platform, StatusBar, Button
 } from 'react-native';
 import Accountscreen from './app/screen/AccountScreen';
 import Cardscreen from './app/screen/CardScreen';
@@ -21,6 +21,74 @@ import Layout2 from './components/Layout2';
 import Layout3 from './components/Layout3';
 import Layout4 from './components/Layout4';
 import Listadaptercomponent from './components/ListAdapterComponent';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+
+const Link = () => {
+  const navigation = useNavigation();
+  return (
+
+    <Button
+      title='click'
+      onPress={() => navigation.navigate("Tweets", { id: 1 })}
+    />
+  )
+}
+
+const Tweets = ({ navigation, route }) => (
+  <Screen>
+    <Text> Tweets topic {route.params.id}</Text>
+    {/* <Button
+      title="View Tweets Details"
+      onPress={() => navigation.navigate("Tweets")}
+    /> */}
+  </Screen>
+)
+
+const TweetDetails = ({ navigation }) => (
+  <Screen>
+    <Text> Tweet Details </Text>
+    {/* <Button
+      title="View Tweets"
+      onPress={() => navigation.navigate("Tweets")}
+    /> */}
+    <Link />
+  </Screen>
+)
+
+const Stack = createNativeStackNavigator();
+
+const StackNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "blue",
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      headerTintColor: "white",
+    }}
+
+    initialRouteName='TweetDetails'>
+    <Stack.Screen
+      name="Tweets"
+      component={Tweets}
+      options={{
+        // headerStyle: {
+        //   backgroundColor: "Tomato",
+        //   alignItems: 'center',
+        //   justifyContent: 'center',
+        // },
+        // headerTintColor: "white",
+      }}
+    />
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      options={({ route }) => ({ title: "Tweet Details" })}
+    />
+  </Stack.Navigator>
+)
 
 export default function App() {
 
@@ -37,8 +105,10 @@ export default function App() {
     // </Screen>
     // <Layout4 />
     // <Loginscreen />
-    <Listingeditscreen />
-
+    // <Listingeditscreen />
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
 
     // <Screen>
     //   <Apptextinput placeholder='name' icon = "email"/>
