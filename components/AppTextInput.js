@@ -3,9 +3,9 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import defultStyles from "../app/config/styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Apptextinput = ({ icon, ...otherProps }) => {
+const Apptextinput = ({ icon, width = "100%", ...otherProps }) => {
     return (
-        <View style={styles.constainer}>
+        <View style={[styles.constainer, { width }]}>
             {icon && <MaterialCommunityIcons name={icon} size={30} color='#000' style={styles.icon} />}
             <TextInput
                 placeholderTextColor="#EA5C2B"

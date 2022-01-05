@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableNativeFeedbackBase, TouchableOpacity } from 
 
 import Apptext from './AppText';
 
-const Pickeritem = ({ label, onPress }) => {
+const Pickeritem = ({ item, label, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <Apptext style={styles.text}>

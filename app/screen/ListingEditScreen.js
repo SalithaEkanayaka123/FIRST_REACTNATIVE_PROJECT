@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import * as Yup from "yup";
+import Categorypickeritem from '../../components/CategoryPickerItem';
 import { Appform, AppFormField } from '../../components/Form';
 import Appformpicker from '../../components/Form/AppFormPicker';
 import Submitbutton from '../../components/Form/SubmitButton';
 import Screen from './Screen';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const validationSchema = Yup.object().shape(
     {
@@ -17,13 +19,20 @@ const validationSchema = Yup.object().shape(
 );
 
 const categories = [
-    { label: "Furniture", value: 1 },
-    { label: "Clothing", value: 2 },
-    { label: "Camera", value: 3 },
+    { label: "Facebook", value: 1, backgroundColor: 'blue', icon: 'facebook' },
+    { label: "Instagram", value: 2, backgroundColor: 'red', icon: 'instagram' },
+    { label: "Twitter", value: 3, backgroundColor: 'blue', icon: 'twitter' },
+    { label: "Telegram", value: 4, backgroundColor: 'blue', icon: 'telegram' },
+    { label: "Music", value: 5, backgroundColor: 'yellow', icon: 'music' },
+    { label: "messenger", value: 6, backgroundColor: 'blue', icon: 'facebook-messenger' },
+    { label: "Whatsapp", value: 7, backgroundColor: 'green', icon: 'whatsapp' },
+    { label: "Teamviewer", value: 8, backgroundColor: 'blue', icon: 'teamviewer' },
+    { label: "Chrome", value: 9, backgroundColor: 'yellow', icon: 'google-chrome' },
 ];
 
 const Listingeditscreen = () => {
     return (
+
         <Screen style={styles.container}>
             <Appform
                 initialValues={{
@@ -43,11 +52,15 @@ const Listingeditscreen = () => {
                     maxLength={8}
                     name="price"
                     placeholder="price"
+                    width={120}
                 />
                 <Appformpicker
+                    PickerItemComponent={Categorypickeritem}
+                    width="50%"
                     items={categories}
                     name="category"
                     placeholder="Category"
+                    numberOfColomns={3}
                 />
                 <AppFormField
                     multiline
