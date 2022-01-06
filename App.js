@@ -23,71 +23,111 @@ import Layout4 from './components/Layout4';
 import Listadaptercomponent from './components/ListAdapterComponent';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AuthNavigator from './app/navigation/AuthNavigation';
+import navigationTheme from './app/navigation/navigationTheme';
+import AppNavigator from './app/navigation/AppNavigator';
 
 const Link = () => {
   const navigation = useNavigation();
+
   return (
 
     <Button
       title='click'
-      onPress={() => navigation.navigate("Tweets", { id: 1 })}
+      onPress={() => navigation.navigate("Settings", { id: 1 })}
     />
   )
 }
 
-const Tweets = ({ navigation, route }) => (
-  <Screen>
-    <Text> Tweets topic {route.params.id}</Text>
-    {/* <Button
-      title="View Tweets Details"
-      onPress={() => navigation.navigate("Tweets")}
-    /> */}
-  </Screen>
-)
+function HomeScreen({ navigation, route }) {
 
-const TweetDetails = ({ navigation }) => (
-  <Screen>
-    <Text> Tweet Details </Text>
-    {/* <Button
-      title="View Tweets"
-      onPress={() => navigation.navigate("Tweets")}
-    /> */}
-    <Link />
-  </Screen>
-)
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* <Text>Home! {route.params.id}</Text> */}
+      <Text>Home!</Text>
+      <Button
+        title='click'
+        onPress={() => navigation.navigate("Settings", { id: 1 })}
+      />
+    </View>
+  );
+}
+
+function SettingsScreen({ navigation, route }) {
+  console.log(route?.params?.id)
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!  {route?.params?.id}</Text>
+      <Button
+        title='click'
+        onPress={() => navigation.navigate("Home")}
+      />
+    </View>
+  );
+}
+
+
+
+
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const StackNavigator = () => (
   <Stack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: "blue",
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      headerTintColor: "white",
-    }}
+  // screenOptions={{
+  //   headerStyle: {
+  //     backgroundColor: "blue",
+  //     alignItems: 'center',
+  //     justifyContent: 'center',
+  //   },
+  //   headerTintColor: "white",
+  // }}
 
-    initialRouteName='TweetDetails'>
+  // initialRouteName='Home'
+  >
     <Stack.Screen
-      name="Tweets"
-      component={Tweets}
+      name="Settings"
+      component={SettingsScreen}
       options={{
-        // headerStyle: {
-        //   backgroundColor: "Tomato",
-        //   alignItems: 'center',
-        //   justifyContent: 'center',
-        // },
-        // headerTintColor: "white",
       }}
     />
     <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      options={({ route }) => ({ title: "Tweet Details" })}
+      name="Home"
+      component={HomeScreen}
+    // options={({ route }) => ({ title: "Home" })}
     />
   </Stack.Navigator>
+)
+
+const TabNavigator = () => (
+  <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarActiveBackgroundColor: 'red',
+      tabBarInactiveBackgroundColor: 'white',
+      tabBarActiveTintColor: 'white',
+      tabBarInactiveTintColor: 'black',
+    })}
+  >
+    <Tab.Screen
+
+      name="Home"
+      options={{
+        tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="home" size={size} color={color} />
+      }}
+      component={HomeScreen}
+    />
+    <Tab.Screen
+      name="Settings"
+      options={{
+        tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="phone-settings" size={size} color={color} />
+      }}
+      component={SettingsScreen}
+    />
+  </Tab.Navigator>
 )
 
 export default function App() {
@@ -106,8 +146,15 @@ export default function App() {
     // <Layout4 />
     // <Loginscreen />
     // <Listingeditscreen />
-    <NavigationContainer>
-      <StackNavigator />
+    <NavigationContainer theme={navigationTheme}>
+      {/* <AuthNavigator /> */}
+      {/* <StackNavigator /> */}
+      {/* <TabNavigator /> */}
+      <AppNavigator />
+      {/* <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator> */}
     </NavigationContainer>
 
     // <Screen>

@@ -30,7 +30,7 @@ const List = [
         images: require("../assets/shopping3.jpg"),
     },
 ]
-const Cardscreen = () => {
+const Cardscreen = ({ navigation }) => {
     return (
         <View style={styles.body}>
             <FlatList
@@ -41,6 +41,7 @@ const Cardscreen = () => {
                         title={item.title}
                         subtitle={"$" + item.subtitle}
                         image={item.images}
+                        onPress={() => navigation.navigate("ListingDetails", item)}
 
                     />
 

@@ -3,19 +3,22 @@ import { View, StyleSheet, Image } from 'react-native';
 import Apptext from '../../components/AppText';
 import Listadaptercomponent from '../../components/ListAdapterComponent';
 
-const Signleviewscreen = () => {
+const Signleviewscreen = ({ route }) => {
+
+    const listing = route?.params;
+    console.log(listing)
     return (
         <View>
             <Image
                 //resizeMode='contain'
                 style={styles.image}
-                source={require('../assets/shopping1.jpg')}
+                source={listing.images}
             />
             <View style={styles.detailsContainer}>
-                <Apptext style={styles.title}>Shopping Cart 1</Apptext>
-                <Apptext style={styles.subtitle}>$100</Apptext>
+                <Apptext style={styles.title}>{listing.title}</Apptext>
+                <Apptext style={styles.subtitle}>${listing.subtitle}</Apptext>
             </View>
-            <Listadaptercomponent title="Salitha Ekanayaka" subtitle="undergraduate" image={require("../assets/githubpic1.png")}/>
+            <Listadaptercomponent title="Salitha Ekanayaka" subtitle="undergraduate" image={require("../assets/githubpic1.png")} />
         </View>
     );
 }

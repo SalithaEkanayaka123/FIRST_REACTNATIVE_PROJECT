@@ -3,7 +3,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import AppButton from '../../components/AppButton';
 
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
     return (
         <ImageBackground
             style={styles.background}
@@ -17,14 +17,18 @@ const WelcomeScreen = () => {
                 />
                 <Text style={styles.logoText}>Hi, I am Salitha Ekanayaka</Text>
             </View>
-            <AppButton title='HI' color="#F3C892" />
-            {/* <View
+            {/* <AppButton style={styles.loginButton} title='Login' color="#F3C892" onPress={() => navigation.navigate("Login")} />
+            <AppButton style={styles.registerButton} title='Register' color="#F3C892" onPress={() => navigation.navigate("Edit screen")} /> */}
+            <View
                 style={styles.loginButton}
+                onTouchMove={() => navigation.navigate("Login")}
+            //onPress={}
             >
                 <Text style={styles.text1}>Login</Text>
-            </View> */}
+            </View>
             <View
                 style={styles.registerButton}
+                onTouchMove={() => navigation.navigate("Edit screen")}
             >
                 <Text style={styles.text1}>Register</Text>
             </View>
